@@ -31,8 +31,15 @@ Have you ever stopped to think that everything has a solution? Every question ha
 
 # Usage
 
+**Firebase**
+
+- Rename the `.env.local.example` file to `.env.local`.
+- Generate your [firebase credentials](https://console.firebase.google.com) and put them in `.env.local`.
+
+**Project**
+
 - Run `npm install` or `yarn install`.
-- Run `yarn start` and access `http://localhost:3000`
+- Run `yarn start` and access `http://localhost:3000`.
 
 # Authors
 

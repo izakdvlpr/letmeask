@@ -1,3 +1,15 @@
+import { AuthProvider } from './contexts/AuthContext';
+
+import { Routes } from './routes';
+
+import { GlobalStyle } from './styles/GlobalStyle';
+
 export function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <AuthProvider>
+      <GlobalStyle />
+
+      <Routes />
+    </AuthProvider>
+  );
 }

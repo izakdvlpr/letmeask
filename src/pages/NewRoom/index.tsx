@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import crypto from 'crypto';
 
 import { database } from '../../services/firebase';
 
@@ -9,8 +10,6 @@ import illustrationImage from '../../assets/images/illustration.svg';
 import logoImage from '../../assets/logo.svg';
 
 import { Button } from '../../components/Button';
-
-import { randomNumber } from '../../utils/randomNumber';
 
 import { Container, Aside, Main, MainContent, Form, Separator } from './styles';
 
@@ -28,14 +27,14 @@ export function NewRoom() {
       return;
     }
 
-    const id = randomNumber();
+    const roomId = crypto.randomBytes(3).toString('HEX');
 
-    await database.ref(`rooms/${id}`).set({
+    await database.ref(`rooms/${roomId}`).set({
       title: newRoom,
       authorId: user?.id,
     });
 
-    history.push(`/rooms/${id}`);
+    history.push(`/rooms/${roomId}`);
   }    
 
   return (

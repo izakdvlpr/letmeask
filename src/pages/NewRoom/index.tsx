@@ -1,16 +1,42 @@
-import { Link } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+
+import { database } from '../../services/firebase';
+
+import { useAuth } from '../../hooks/useAuth';
 
 import illustrationImage from '../../assets/images/illustration.svg';
 import logoImage from '../../assets/logo.svg';
 
-import { useAuth } from '../../hooks/useAuth';
-
 import { Button } from '../../components/Button';
+
+import { randomHex } from '../../utils/randomHex';
 
 import { Container, Aside, Main, MainContent, Form, Separator } from './styles';
 
 export function NewRoom() {
+  const history = useHistory();
+
   const { user } = useAuth();
+
+  const [newRoom, setNewRom] = useState('');
+
+  async function handleCreateRoom(event: FormEvent) {
+    event.preventDefault();
+
+    if (newRoom.trim() === '') {
+      return;
+    }
+
+    const id = randomHex();
+
+    await database.ref(`rooms/${id}`).set({
+      title: newRoom,
+      authorId: user?.id,
+    });
+
+    history.push(`/rooms/${id}`);
+  }    
 
   return (
     <Container>
@@ -24,16 +50,19 @@ export function NewRoom() {
 
       <Main>
         <MainContent>
-          <img src={logoImage} alt="logo" />
-
-          <h1>{user?.name}</h1>
+          <img src={logoImage} alt="logo" />          
 
           <h2>Criar uma nova sala</h2>
 
           <Separator>ou entre em uma sala</Separator>
 
-          <Form>
-            <input type="text" placeholder="Nome da sala" />
+          <Form onSubmit={handleCreateRoom}>
+            <input
+              type="text"
+              placeholder="Nome da sala"
+              onChange={event => setNewRom(event.target.value)}
+              value={newRoom}
+            />
 
             <Button type="submit">Criar sala</Button>
           </Form>

@@ -43,6 +43,10 @@ export const Aside = styled.aside`
 
     line-height: 32px;
   }
+  
+  @media (max-width: 880px) {
+    display: none;
+  }
 `;
 
 export const Main = styled.main`

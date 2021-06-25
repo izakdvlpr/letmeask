@@ -1,12 +1,17 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Home, NewRoom } from '../pages';
+import { Home, NewRoom, Room, AdminRoom } from '../pages';
 
 export function Routes() {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Home} />
-      <Route path="/rooms/new" component={NewRoom} />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/rooms/new" component={NewRoom} />
+        <Route path="/rooms/:id" component={Room} />
+        
+        <Route path="/admin/rooms/:id" component={AdminRoom} />
+      </Switch>
     </BrowserRouter>
   );
 }

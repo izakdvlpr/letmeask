@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import crypto from 'crypto';
 
 import { database } from '../../services/firebase';
@@ -69,7 +69,10 @@ export function Room() {
     setNewQuestion('');
   }
 
-  async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
+  async function handleLikeQuestion(
+    questionId: string,
+    likeId: string | undefined,
+  ) {
     if (likeId) {
       await database
         .ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`)
@@ -117,7 +120,11 @@ export function Room() {
               </UserInfo>
             ) : (
               <span>
-                Para enviar uma pergunta, <button>faça seu login</button>.
+                Para enviar uma pergunta,{' '}
+                <Link to="/">
+                  <button>faça seu login</button>
+                </Link>
+                .
               </span>
             )}
 

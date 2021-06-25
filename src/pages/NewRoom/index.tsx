@@ -10,7 +10,7 @@ import logoImage from '../../assets/logo.svg';
 
 import { Button } from '../../components/Button';
 
-import { randomHex } from '../../utils/randomHex';
+import { randomNumber } from '../../utils/randomNumber';
 
 import { Container, Aside, Main, MainContent, Form, Separator } from './styles';
 
@@ -28,7 +28,7 @@ export function NewRoom() {
       return;
     }
 
-    const id = randomHex();
+    const id = randomNumber();
 
     await database.ref(`rooms/${id}`).set({
       title: newRoom,

@@ -4,7 +4,6 @@ export const Container = styled.button`
   height: 50px;
 
   padding: 0 32px;
-  margin-top: 64px;
 
   display: flex;
   align-items: center;
@@ -25,6 +24,14 @@ export const Container = styled.button`
 
   img {
     margin-right: 8px;
+  }
+  
+  &.outlined {
+    color: #835afd;
+    
+    border: 1px solid #835afd;
+    
+    background: #ffffff;
   }
 
   &:not(:disabled):hover {

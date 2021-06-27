@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import cx from 'classnames';
 
 import { Container, Footer, UserInfo, LikeButton } from './styles';
 
@@ -9,11 +10,24 @@ interface QuestionProps {
     avatar: string;
   };
   children?: ReactNode;
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
 }
 
-function Question({ content, author, children }: QuestionProps) {
+function Question({
+  content,
+  author,
+  children,
+  isAnswered = false,
+  isHighlighted = false,
+}: QuestionProps) {
   return (
-    <Container>
+    <Container
+      className={cx(
+        { answered: isAnswered },
+        { highlighted: isHighlighted && !isAnswered },
+      )}
+    >
       <p>{content}</p>
 
       <Footer>

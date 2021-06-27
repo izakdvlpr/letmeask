@@ -164,5 +164,5 @@ export const UserInfo = styled.div`
 `;
 
 export const QuestionList = styled.div`
-  margin-top: 32px;
+  margin: 32px 0;
 `;

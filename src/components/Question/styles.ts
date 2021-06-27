@@ -12,6 +12,20 @@ export const Container = styled.div`
   & + & {
     margin-top: 8px;
   }
+  
+  &.highlighted {
+    border: 1px solid #835AFD;
+    
+    background: #F4F0FF;
+    
+    footer div span {
+      color: #29292E;
+    }
+  }
+  
+  &.answered {
+    background: #DBDCDD;
+  }
 
   p {
     color: #29292e;
@@ -25,12 +39,23 @@ export const Footer = styled.footer`
   justify-content: space-between;
   align-items: center;
 
-  button {
-    border: 0;
+  > div {
+    display: flex;    
+    gap: 16px;
+    
+    button {
+      border: 0;
 
-    cursor: pointer;
+      cursor: pointer;
 
-    background: transparent;
+      transition: filter 0.2s;
+
+      background: transparent;
+
+      &:hover {
+        filter: brightness(0.7);
+      }
+    }
   }
 `;
 
@@ -62,17 +87,11 @@ export const LikeButton = styled.button`
 
   color: #737380;
 
-  transition: filter 0.2s;
-
   &.liked {
     color: #835afd;
 
     svg path {
       stroke: #835afd;
     }
-  }
-
-  &:hover {
-    filter: brightness(0.7);
   }
 `;
